@@ -5,6 +5,7 @@ using System.Data;
 using System.IO;
 using System.Text.RegularExpressions;
 using DataReaderValidatorAndUploader;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace DataReaderValidatorAndUploaderApp
 {
@@ -17,6 +18,8 @@ namespace DataReaderValidatorAndUploaderApp
             string path = ConfigurationManager.AppSettings["excelSourcePath"].ToString();
             string search = ConfigurationManager.AppSettings["extension"].ToString();
             string database = ConfigurationManager.AppSettings["database"].ToString();
+
+
             Logger.Info("Starting validation");
             Logger.Info($"Looking for {search} files in {Regex.Unescape(path)}");
 
