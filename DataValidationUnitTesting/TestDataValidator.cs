@@ -8,7 +8,7 @@ using DataReaderValidatorAndUploader;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class BasicValidationTest
+    public class TestDataValidator
     {
         BasicValidation basicValidation;
         string filePath1;
@@ -24,14 +24,14 @@ namespace UnitTestProject1
         [TestInitialize]
         public void TestInit()
         {
-            filePath1 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\Book3.xlsx";
-            filePath2 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\Book11.xlsx";
-            filePath3 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\Book9.xlsx";
-            filePath4 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\Book4.xlsx";
-            filePath5 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\Book7.xlsx";
-            filePath6 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\Book16.xlsx";
-            filePath7 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\Book15.xlsx";
-            filePath8 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\Book18.xlsx";
+            filePath1 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\3rdLongColumnName.xlsx";
+            filePath2 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\EmptyColumnNames.xlsx";
+            filePath3 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\EmptyFile.xlsx";
+            filePath4 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\EmptyFirstColSecRow.xlsx";
+            filePath5 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\LongSecondRowColumnData.xlsx";
+            filePath6 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\NoErrorFile.xlsx";
+            filePath7 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\Wrong3rdrowColumnData.xlsx";
+            filePath8 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\WrongDataType.xlsx";
             filePath9 = "C:\\Users\\Jojo\\source\\repos\\DataReaderValidatorAndUploaderApp\\LongestFileEvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvver";
         }
 
@@ -39,7 +39,7 @@ namespace UnitTestProject1
         public void InvalidColumnNames_ColumnNameIsNotEmpty_ReturnsFalse()
         {
             //Arrange
-            basicValidation = new BasicValidation(filePath1, 128, 32767, 128, 128);
+            basicValidation = new BasicValidation(filePath2, 128, 32767, 128, 128);
             //Act
             object ColsNamesEmpty = basicValidation.InvalidColumnNames();
             //Assert
@@ -106,7 +106,7 @@ namespace UnitTestProject1
         public void InvalidColumnNames_CellIsEmpty_ReturnsTrue()
         {
             //Arrange
-            basicValidation = new BasicValidation(filePath6, 128, 32767, 128, 128);
+            basicValidation = new BasicValidation(filePath9, 128, 32767, 128, 128);
             //Act
             object CellIsEmpty = basicValidation.InvalidCellData();
             //Assert
@@ -117,7 +117,7 @@ namespace UnitTestProject1
         public void InvalidColumnNames_CellDataHasWrongDataType_ReturnsTrue()
         {
             //Arrange
-            basicValidation = new BasicValidation(filePath5, 128, 32767, 128, 128);
+            basicValidation = new BasicValidation(filePath7, 128, 32767, 128, 128);
             //Act
             object CellHasValidSizeAndWrongDataType = basicValidation.InvalidCellData();
             //Assert
@@ -128,7 +128,7 @@ namespace UnitTestProject1
         public void InvalidColumnNames_CellDataInValidSize_ReturnsTrue()
         {
             //Arrange
-            basicValidation = new BasicValidation(filePath8, 128, 32767, 128, 128);
+            basicValidation = new BasicValidation(filePath5, 128, 32767, 128, 128);
             //Act
             object CellHasInValidSizeButRightDataType = basicValidation.InvalidCellData();
             //Assert
